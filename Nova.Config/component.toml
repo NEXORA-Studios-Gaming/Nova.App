@@ -1,0 +1,13 @@
+# Config component startup manifest. Paths are resolved relative to this file.
+# Launch: nova-config component.toml
+eventbus_config = "../Nova.EventBus/eventbus.toml"
+operation_options = "nova-config.toml"
+
+# These identifiers form the RPC namespace argument. Only declared files may be accessed.
+[[configs]]
+id = "app"
+path = "../Nova.App‍/src-tauri/app-settings.toml"
+
+[[configs]]
+id = "game"
+path = "game-settings.toml"

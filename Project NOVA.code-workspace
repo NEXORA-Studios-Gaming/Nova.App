@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "(Root)"
+		},
+		{
+			"path": "Nova.App‍",
+			"name": "App (Main)"
+		},
+		{
+			"path": "Nova.EventBus",
+			"name": "EventBus (Module)"
+		},
+		{
+			"path": "Nova.Config",
+			"name": "Config (Module)"
+		},
+		{
+			"path": "Nova.Docs",
+			"name": "Docs (Documentation)"
+		}
+	],
+	"settings": {}
+}

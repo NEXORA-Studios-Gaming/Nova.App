@@ -1,0 +1,9 @@
+# Nova.Config 操作选项，供 examples/basic.rs 加载。
+# 业务配置保存在另一个文件中；这些选项也可以直接在 Rust 中构造。
+create_if_missing = true
+create_parent_dirs = true
+read_only = false
+# reject：拒绝覆盖外部编辑；overwrite：显式允许覆盖。
+conflict_policy = "reject"
+max_file_bytes = 1048576
+sync_on_save = true

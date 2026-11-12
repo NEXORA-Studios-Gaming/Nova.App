@@ -1,0 +1,13 @@
+# All time units are milliseconds. The server and clients must share this configuration.
+# Only loopback endpoints are accepted. This protocol has no authentication or encryption.
+# Launch the component: nova-eventbus eventbus.toml
+endpoint = "127.0.0.1:47631"
+connect_timeout_ms = 2000
+request_timeout_ms = 5000
+write_timeout_ms = 5000
+reconnect_delay_ms = 500
+max_frame_bytes = 8388608
+# 有界队列：慢订阅者会收到 Lagged；过慢的服务端连接会断开。
+queue_capacity = 256
+max_connections = 128
+max_in_flight_requests = 64

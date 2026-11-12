@@ -1,0 +1,23 @@
+[package]
+name = "nova-eventbus"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.90"
+description = "Local cross-platform IPC with typed events and RPC"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+rmp-serde = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "net", "io-util", "sync", "time", "macros", "signal"] }
+toml = "0.9"
+thiserror = "2"
+tokio-util = { version = "0.7", features = ["codec"] }
+futures-util = { version = "0.3", features = ["sink"] }
+bytes = "1"
+
+[[bin]]
+name = "nova-eventbus"
+path = "src/main.rs"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["rt-multi-thread", "signal"] }
