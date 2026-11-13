@@ -1,0 +1,49 @@
+---
+title: Nova 文档
+description: Nova Launcher 与组件生态的中文文档。
+template: splash
+hero:
+  tagline: 面向玩家与开发者的 Nova 文档中心
+  image:
+    file: ../../assets/Nova.png
+  actions:
+    - text: 开始使用 Nova
+      link: /user/
+      icon: right-arrow
+    - text: 开始开发
+      link: /developer/architecture/
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+Nova 是一个正在构建中的模块化游戏工具链。这里记录当前已经可以使用的 Launcher、EventBus 与 Config 组件，并持续补充面向用户和开发者的实践内容。
+
+## 从这里开始
+
+<CardGrid stagger>
+  <Card title="我是 Nova 用户" icon="open-book">
+    了解 Launcher 的定位、如何启动本地组件，以及遇到问题时该检查什么。
+
+    [阅读用户指南](/user/)
+  </Card>
+  <Card title="我要开发组件" icon="seti:rust">
+    从组件架构开始，接入 EventBus，并使用 Config 管理 TOML 配置。
+
+    [阅读开发者指南](/developer/architecture/)
+  </Card>
+  <Card title="我在查 API" icon="document">
+    查看服务路由、请求结构、事件和协议约束，适合边开发边对照。
+
+    [查看 API 参考](/developer/protocol/)
+  </Card>
+</CardGrid>
+
+## 当前能力
+
+- **Nova Launcher**：桌面端入口，负责承载 Nova 的窗口和组件体验。
+- **EventBus**：本机回环 TCP 消息总线，提供服务注册、RPC 请求和事件订阅。
+- **Config**：独立运行的配置组件，负责登记的 TOML 文件读写、校验和变更通知。
+
+> 文档与代码同步演进。标记为“当前版本”的内容以仓库中的实现为准，未来规划不会作为已实现功能描述。

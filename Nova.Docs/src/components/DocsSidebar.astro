@@ -1,0 +1,89 @@
+---
+import MobileMenuFooter from 'virtual:starlight/components/MobileMenuFooter';
+import SidebarPersister from '@astrojs/starlight/components/SidebarPersister.astro';
+import SidebarSublist from '@astrojs/starlight/components/SidebarSublist.astro';
+import { Icon } from '@astrojs/starlight/components';
+
+const { sidebar } = Astro.locals.starlightRoute;
+const pathname = Astro.url.pathname;
+const sections = [
+  { label: '用户指南', href: '/user/', icon: 'open-book', prefix: '/user/' },
+  { label: '开发者指南', href: '/developer/architecture/', icon: 'seti:rust', prefix: '/developer/' },
+];
+const currentSection = sections.find((section) => pathname.startsWith(section.prefix));
+const currentGroup = currentSection
+  ? sidebar.find((entry) => entry.type === 'group' && entry.label === currentSection.label)
+  : undefined;
+const visibleSidebar = currentGroup?.type === 'group' ? currentGroup.entries : sidebar;
+---
+
+<nav class="docs-section-switcher" aria-label="文档分类">
+  {sections.map((section) => (
+    <a
+      class:list={['docs-section-option', { active: pathname.startsWith(section.prefix) }]}
+      href={section.href}
+      aria-current={pathname.startsWith(section.prefix) ? 'page' : undefined}
+    >
+      <Icon name={section.icon} aria-hidden="true" />
+      <span>{section.label}</span>
+    </a>
+  ))}
+</nav>
+
+<SidebarPersister><SidebarSublist sublist={visibleSidebar} /></SidebarPersister>
+<div class="md:sl-hidden">
+  <MobileMenuFooter />
+</div>
+
+<style>
+  .docs-section-switcher {
+    display: grid;
+    gap: 0.375rem;
+    padding: 0.5rem;
+    margin: 0 0 1rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    background: var(--sl-color-gray-6);
+  }
+
+  .docs-section-option {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-base);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+  }
+
+  .docs-section-option :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: none;
+  }
+
+  .docs-section-option:hover {
+    color: var(--sl-color-white);
+    background: var(--sl-color-gray-5);
+  }
+
+  .docs-section-option.active {
+    color: var(--sl-color-white);
+    border-color: var(--sl-color-gray-5);
+    background: var(--sl-color-gray-5);
+  }
+
+  .docs-section-option.active :global(svg) {
+    color: var(--sl-color-accent-high);
+  }
+
+  .docs-section-option:focus-visible {
+    outline: 2px solid var(--sl-color-accent);
+    outline-offset: 2px;
+  }
+</style>
